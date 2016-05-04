@@ -1,6 +1,6 @@
 /*
- * grunt-html-cpr
- * https://github.com/PlanitarInc/grunt-html-cpr
+ * grunt-htmlcpr
+ * https://github.com/PlanitarInc/grunt-htmlcpr
  *
  * Copyright (c) 2016 PlanitarInc
  * Licensed under the MIT license.
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     },
 
     // Configuration to be run (and then tested).
-    html_cpr: {
+    htmlcpr: {
 
       src_is_dir: {
         files: {
@@ -46,16 +46,6 @@ module.exports = function(grunt) {
             'test/fixtures/images/almond.jpg',
           ],
         },
-      },
-
-      enforced_cwd: {
-        files: [{
-          expand: true,
-          cwd: 'test/fixtures',
-          src: ['images/bed.jpg', 'fonts/fontawesome-webfont.ttf',
-            'misc/readdir.txt', 'images/almond.jpg'],
-          dest: 'tmp/enforced_cwd/',
-        }],
       },
 
       enforced_cwd: {
@@ -162,7 +152,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'html_cpr', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'htmlcpr', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

@@ -26,7 +26,7 @@ let path = require('path');
     test.ifError(value)
 */
 
-exports.html_cpr = {
+exports.htmlcpr = {
   setUp: (done) => {
     // setup here if necessary
     done();

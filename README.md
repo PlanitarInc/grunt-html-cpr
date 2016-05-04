@@ -1,4 +1,4 @@
-# grunt-html-cpr
+# grunt-htmlcpr
 
 > A grunt task to copy HTML files with all the local assets (images, scripts, style files, etc.) that it needs.
 
@@ -8,23 +8,23 @@ This plugin requires Grunt `~0.4.5`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-html-cpr --save-dev
+npm install grunt-htmlcpr --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-html-cpr');
+grunt.loadNpmTasks('grunt-htmlcpr');
 ```
 
-## The "html_cpr" task
+## The "htmlcpr" task
 
 ### Overview
-In your project's Gruntfile, add a section named `html_cpr` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `htmlcpr` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  html_cpr: {
+  htmlcpr: {
     options: {
       // Files withing the directory are copied but the links in these files
       // are not followed..
@@ -86,13 +86,13 @@ You want to copy `index.html` and any local files required by this file (images,
 scripts, etc.). You need to copy only the files required by `index.html` and no
 more.
 
-`html-cpr` comes to the rescue!
+`htmlcpr` comes to the rescue!
 
 The following configuration would do exactly what you want:
 
 ```js
 grunt.initConfig({
-  html_cpr: {
+  htmlcpr: {
     files: [{
       expand: true,
       cwd: 'app',
@@ -107,7 +107,7 @@ If the only files included from `index.html` are `css/main.css`,
 `js/main.js` and `vendor/fancy.css`;
 in thier turns,`css/main.css` turn includes `images/logo.png`
 and `vendor/fancy.css` includes `vendor/fancy-spinner.png`.
-Then the contents of `build` directory after an execution of `grun html_cpr` would be:
+Then the contents of `build` directory after an execution of `grun htmlcpr` would be:
 
 
 ```sh

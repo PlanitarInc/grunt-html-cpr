@@ -1,6 +1,6 @@
 /*
- * grunt-html-cpr
- * https://github.com/PlanitarInc/grunt-html-cpr
+ * grunt-htmlcpr
+ * https://github.com/PlanitarInc/grunt-htmlcpr
  *
  * Copyright (c) 2016 PlanitarInc
  * Licensed under the MIT license.
@@ -21,7 +21,7 @@ module.exports = function(_grunt) {
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
 
-  grunt.registerMultiTask('html_cpr',
+  grunt.registerMultiTask('htmlcpr',
     multiline.stripIndent(function () {/*
       Copies HTML files and all resources included in that files;
       e.g. css styles and js scripts.
