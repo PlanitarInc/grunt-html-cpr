@@ -115,6 +115,20 @@ module.exports = function(grunt) {
         },
       },
 
+      page_filter_fn: {
+        options: {
+          rootDir: 'test/fixtures',
+          blacklistFn: function (url, src) {
+            // Exclude 'image/almond.jpg' but only when it is included from
+            // 'page_filter_fn.html'
+            return src === 'page_filter_fn.html' && url === '/images/almond.jpg';
+          },
+        },
+        files: {
+          'tmp/page_filter_fn/': ['test/fixtures/page_filter_fn.html'],
+        },
+      },
+
       page_subdir: {
         options: {
           rootDir: 'test/fixtures',

@@ -34,7 +34,9 @@ module.exports = function(_grunt) {
       var rootDir = options.rootDir || file.orig.cwd || '';
       var dstDir = file.orig.dest;
       var norecDir = options.norecDir;
+
       var traverser = new LinkTraverser(rootDir, dstDir, norecDir);
+      traverser.blacklistFn = options.blacklistFn || null;
 
       grunt.file.mkdir(dstDir);
 
@@ -58,6 +60,7 @@ function LinkTraverser(rootDir, dstDir, norecDir) {
   if (this.norecDir[this.norecDir.length - 1] !== '/') {
     this.norecDir += '/';
   }
+  this.blacklistFn = null;
 }
 
 // XXX handle inifinite recursion
@@ -108,6 +111,11 @@ LinkTraverser.prototype.processPath = function (src, dst) {
 };
 
 LinkTraverser.prototype.processUrl = function (src, dst, url) {
+  if (this.blacklistFn && this.blacklistFn(url, relativePath(this.rootDir, src))) {
+    grunt.log.writeln('Ignoring user-blacklisted url: ' + chalk.yellow(url) + '...');
+    return '';
+  }
+
   if (isRemoteUrl(url)) {
     grunt.log.writeln('Skipping remote url: ' + chalk.yellow(url) + '...');
     return url;

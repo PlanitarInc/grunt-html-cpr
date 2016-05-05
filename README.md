@@ -43,17 +43,28 @@ grunt.initConfig({
 ### Options
 
 #### options.rootDir
-Type: `String`
+Type: `string`
 Default value: `''`
 
 A directory overriding `cwd`.
 
 #### options.noRec
-Type: `String`
+Type: `string`
 Default value: `''`
 
 Files in the `noRec` directory will be copied, but the links in these files
 won't be followed.
+
+#### options.blacklistFn
+Type: `function (url: string, src: string) : bool`
+Default value: `null`
+
+The function is called for every URL detected by the plugin.
+First parameter `url` is the detected URL and the second parameter `src`
+is the path of the currently processed file.
+
+If the function returns truthy value the link is replaced with `''`
+and the file referenced by the link is not copied to the destination dir.
 
 ### Usage Examples
 
@@ -93,6 +104,9 @@ The following configuration would do exactly what you want:
 ```js
 grunt.initConfig({
   htmlcpr: {
+    options: {
+      norecDir: 'vendor',
+    },
     files: [{
       expand: true,
       cwd: 'app',

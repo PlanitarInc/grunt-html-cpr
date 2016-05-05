@@ -122,6 +122,16 @@ exports.htmlcpr = {
     test.done();
   },
 
+  page_filter_fn: (test) => {
+    test.expect(1);
+
+    let actual = getDirFiles('tmp/page_filter_fn');
+    let expected = getDirFiles('test/expected/page_filter_fn');
+    test.deepEqual(actual, expected);
+
+    test.done();
+  },
+
   page_subdir: (test) => {
     test.expect(1);
 
