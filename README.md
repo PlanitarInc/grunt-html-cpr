@@ -150,4 +150,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-- 2016-05-03      v0.1.0      Basic implementation
+- 2016-05-03 – v0.1.1 – Support `options.blacklistFn`
+- 2016-05-03 – v0.1.0 – Basic implementation

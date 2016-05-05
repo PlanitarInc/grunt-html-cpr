@@ -1,7 +1,7 @@
 {
   "name": "grunt-htmlcpr",
   "description": "A grunt task to copy HTML files with all the local assets (images, scripts, style files, etc.) that it needs.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/PlanitarInc/grunt-htmlcpr",
   "author": {
     "name": "PlanitarInc",
