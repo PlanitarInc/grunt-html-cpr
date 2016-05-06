@@ -56,7 +56,7 @@ Files in the `noRec` directory will be copied, but the links in these files
 won't be followed.
 
 #### options.blacklistFn
-Type: `function (url: string, src: string) : bool`
+Type: `function (url: string, src: string): bool`
 Default value: `null`
 
 The function is called for every URL detected by the plugin.
@@ -65,6 +65,16 @@ is the path of the currently processed file.
 
 If the function returns truthy value the link is replaced with `''`
 and the file referenced by the link is not copied to the destination dir.
+
+### options.schemelessUrlFix
+Type: `string|function (url: string, src: string): bool`
+Default value: `null`
+
+The function is called when a schemeless url is detected
+(e.g.  `//cdn.superfast.com/myself.png`). If the value of the option is a
+string, that string is considered to be the protocol and is appended to the URL.
+If the value is the function, that function is being called and the URL is
+replaced with its return value.
 
 ### Usage Examples
 
@@ -150,5 +160,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
+- 2016-05-06 – v0.1.2 – Support `options.schemelessUrlFix`
 - 2016-05-03 – v0.1.1 – Support `options.blacklistFn`
 - 2016-05-03 – v0.1.0 – Basic implementation

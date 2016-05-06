@@ -94,6 +94,31 @@ module.exports = function(grunt) {
         },
       },
 
+      page_remote_links_replace_http: {
+        options: {
+          rootDir: 'test/fixtures',
+          schemelessUrlFix: 'http',
+        },
+        files: {
+          'tmp/page_remote_links_replace_http/': ['test/fixtures/page_remote_links.html'],
+        },
+      },
+
+      page_remote_links_replace_fn: {
+        options: {
+          rootDir: 'test/fixtures',
+          schemelessUrlFix: function (url, src) {
+            if (/apple-touch-icon-2.png$/.test(url)) {
+              return 'qwe:' + url;
+            }
+            return url;
+          },
+        },
+        files: {
+          'tmp/page_remote_links_replace_fn/': ['test/fixtures/page_remote_links.html'],
+        },
+      },
+
       page_with_css_url: {
         options: {
           rootDir: 'test/fixtures',

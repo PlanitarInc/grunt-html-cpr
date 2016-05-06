@@ -38,6 +38,18 @@ module.exports = function(_grunt) {
       var traverser = new LinkTraverser(rootDir, dstDir, norecDir);
       traverser.blacklistFn = options.blacklistFn || null;
 
+      if (typeof options.schemelessUrlFix === 'string') {
+        var scheme = options.schemelessUrlFix;
+        if (scheme.charAt(scheme.length - 1) !== ':') {
+          scheme += ':';
+        }
+        traverser.schemelessUrlFix = function (url) {
+          return scheme + url;
+        };
+      } else if (typeof options.schemelessUrlFix === 'function') {
+        traverser.schemelessUrlFix = options.schemelessUrlFix;
+      }
+
       grunt.file.mkdir(dstDir);
 
       file.src.forEach(function (src) {
@@ -61,6 +73,7 @@ function LinkTraverser(rootDir, dstDir, norecDir) {
     this.norecDir += '/';
   }
   this.blacklistFn = null;
+  this.schemelessUrlFix = null;
 }
 
 // XXX handle inifinite recursion
@@ -114,6 +127,10 @@ LinkTraverser.prototype.processUrl = function (src, dst, url) {
   if (this.blacklistFn && this.blacklistFn(url, relativePath(this.rootDir, src))) {
     grunt.log.writeln('Ignoring user-blacklisted url: ' + chalk.yellow(url) + '...');
     return '';
+  }
+
+  if (isSchemeLess(url) && this.schemelessUrlFix) {
+    url = this.schemelessUrlFix(url);
   }
 
   if (isRemoteUrl(url)) {
@@ -221,7 +238,11 @@ var getPath = function (url, srcDir, rootDir) {
 };
 
 var isRemoteUrl = function (url) {
-  return /^(https:|http:)?\/\//.test(url);
+  return /^([a-z]+:)?\/\//.test(url);
+};
+
+var isSchemeLess = function (url) {
+  return url.charAt(0) === '/' && url.charAt(1) === '/';
 };
 
 var getUrlPath = function (url) {

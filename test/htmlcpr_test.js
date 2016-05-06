@@ -102,6 +102,26 @@ exports.htmlcpr = {
     test.done();
   },
 
+  page_remote_links_replace_http: (test) => {
+    test.expect(1);
+
+    let actual = getDirFiles('tmp/page_remote_links_replace_http');
+    let expected = getDirFiles('test/expected/page_remote_links_replace_http');
+    test.deepEqual(actual, expected);
+
+    test.done();
+  },
+
+  page_remote_links_replace_fn: (test) => {
+    test.expect(1);
+
+    let actual = getDirFiles('tmp/page_remote_links_replace_fn');
+    let expected = getDirFiles('test/expected/page_remote_links_replace_fn');
+    test.deepEqual(actual, expected);
+
+    test.done();
+  },
+
   page_with_css_url: (test) => {
     test.expect(1);
 
