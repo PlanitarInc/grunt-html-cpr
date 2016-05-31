@@ -174,7 +174,7 @@ exports.htmlcpr = {
 
 };
 
-let getDirFiles = (dir) => {
+var getDirFiles = (dir) => {
   let res = [];
   grunt.file.recurse(dir, (abspath, rootdir, subdir, filename) => {
     // Skip hidden files

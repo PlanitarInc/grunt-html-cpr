@@ -102,18 +102,18 @@ LinkTraverser.prototype.processPath = function (src, dst) {
   case 'html':
     grunt.verbose.writeln('Processig HTML file', chalk.yellow(src));
 
-    var newContent = replaceHtmlUrls(grunt.file.read(src), function (url) {
+    var newHtmlContent = replaceHtmlUrls(grunt.file.read(src), function (url) {
       return this.processUrl(src, dst, url);
     }.bind(this));
-    grunt.file.write(dst, newContent);
+    grunt.file.write(dst, newHtmlContent);
     return;
 
   case 'css':
     grunt.verbose.writeln('Processig CSS file', chalk.yellow(src));
-    var newContent = replaceCssUrls(grunt.file.read(src), function (url) {
+    var newCssContent = replaceCssUrls(grunt.file.read(src), function (url) {
       return this.processUrl(src, dst, url);
     }.bind(this));
-    grunt.file.write(dst, newContent);
+    grunt.file.write(dst, newCssContent);
     return;
 
   default:
