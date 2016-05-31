@@ -1,4 +1,4 @@
-# grunt-htmlcpr
+# grunt-htmlcpr [![Build Status](https://travis-ci.org/PlanitarInc/grunt-htmlcpr.svg?branch=master)](https://travis-ci.org/PlanitarInc/grunt-htmlcpr)
 
 > A grunt task to copy HTML files with all the local assets (images, scripts, style files, etc.) that it needs.
 
